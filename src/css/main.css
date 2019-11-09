@@ -1,0 +1,70 @@
+html{
+    font-size: 14px;
+    font-family: sans-serif;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+}
+.routePoints, #map {
+    height: 30rem;
+}
+.routePoints {
+    flex-grow:1;
+    width: 40%;
+    padding: 0.5rem;
+}
+#map {
+    flex-grow:2;
+    width: 60%;
+}
+#addressLine {
+    border: solid black 1px;
+    width: 90%;
+    height: 2rem;
+    font-size: 1.2rem;
+}
+.pointlist{
+    position: relative;
+}
+.pointlist__point{
+    width: 90%;
+    margin: 0.5rem 0 0.5rem;
+    display: flex;
+    border: black solid 1px;
+    height: 2rem;
+    align-items: center;
+    padding: 2%;
+    background: white;
+    user-select: none;
+}
+.pointlist__point_layout {
+    width: 90%;
+    height: 2rem;
+    margin: 0.5rem 0 0.5rem;
+}
+.pointlist__point_remove{
+    margin-left: auto;
+    display: inline-block;
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+.pointlist__point_remove::before, .pointlist__point_remove::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: black;
+    display: block;
+    position: absolute;
+    top: 40%;
+}
+.pointlist__point_remove::before{
+    transform: rotate(45deg);
+}
+.pointlist__point_remove::after {
+    transform: rotate(-45deg);
+}
