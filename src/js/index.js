@@ -1,6 +1,5 @@
-/*jshint esversion: 6 */
-import {Item} from './Item.js';
 'use strict'
+import {Item} from './Item.js';
 window.onload = () => {
     createMap('map');
 }
