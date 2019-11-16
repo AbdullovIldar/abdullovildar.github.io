@@ -1,15 +1,16 @@
+'use strict'
 export class Item {
     constructor (internal) {
         this.pointlist = internal.pointlist,
-        this.pointItem = document.createElement('li'),
-        this.removeKey = document.createElement('span'),
         this.itemClassName = internal.itemClassName,
+        this.id = internal.id,
         this.text = internal.text,
-        this.needFunction = internal.eventFunction,
-        this.id = internal.id
+        this.eventFunction = internal.eventFunction ? internal.eventFunction: () => {},
+        this.pointItem = document.createElement('li'),
+        this.removeKey = document.createElement('span')
     }
-
-    createItem() {
+    
+    create() {
         this.pointItem.classList.add(this.itemClassName);
         this.removeKey.classList.add(this.itemClassName + '_remove');
         this.pointItem.textContent = this.text;
@@ -18,13 +19,14 @@ export class Item {
         this.removeKey.addEventListener('mousedown', (event) => {
             event.stopPropagation();
             this.pointItem.remove();
-            this.needFunction('remove');
+            this.eventFunction('remove');
         })
         this.pointlist.append(this.pointItem);
         this.pointItem.addEventListener('mousedown', e => this._movetItem(e));
     }
 
     _movetItem (event) {
+        const margin = this.pointItem.style.margin;
         const itemLayout = document.createElement('li');
         itemLayout.classList.add(this.itemClassName);
         itemLayout.style.border = 'none'
@@ -54,15 +56,17 @@ export class Item {
         }
         this.pointItem.style.position = 'absolute';
         this.pointItem.style.zIndex = '999';
+        if(anotherItems.length > 0) this.pointItem.style.margin = '0px';
         moveTo(event);
         window.addEventListener('mousemove', moveTo);
         window.addEventListener('mouseup', ()=>{
+            this.pointItem.style.margin = margin;
             this.pointItem.style.position = 'static';
             this.pointItem.style.zIndex = '1';
             itemLayout.replaceWith(this.pointItem);
             itemLayout.remove();
             window.removeEventListener('mousemove', moveTo);
-            this.needFunction('mouseup');
+            this.eventFunction('mouseup');
             window.onmouseup = null;
         })
     }

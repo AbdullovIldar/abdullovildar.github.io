@@ -2,9 +2,9 @@
   "name": "abdullovildar.github.io",
   "version": "1.0.0",
   "description": "",
-  "main": "(dist/index.js)",
+  "main": "(src/js/index.js)",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "dev": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
   },
@@ -12,6 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/AbdullovIldar/abdullovildar.github.io.git"
   },
+  "browsersList": [
+    "> 1%",
+    "last 3 version"
+  ],
   "author": "Ildar",
   "license": "MIT",
   "bugs": {
@@ -19,14 +23,23 @@
   },
   "homepage": "https://github.com/AbdullovIldar/abdullovildar.github.io#readme",
   "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "autoprefixer": "^9.7.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "css-loader": "^3.2.0",
+    "cssnano": "^4.1.10",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "^24.9.0",
+    "nightmare": "^3.0.2",
     "path": "^0.12.7",
+    "postcss-loader": "^3.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "babel-loader": "^8.0.6"
+    "webpack-dev-server": "^3.9.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

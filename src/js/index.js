@@ -1,5 +1,6 @@
 'use strict'
 import {Item} from './Item.js';
+import "babel-polyfill";
 window.onload = () => {
     createMap('map');
 }
@@ -22,15 +23,16 @@ function createNewPoint (map) {
         polyline: new ymaps.Polyline([])
     };
     const addressLine = document.querySelector('#addressLine');
-    const pointlist = document.querySelector('.pointlist');
+    const pointList = document.querySelector('.pointlist');
     const renderPolyline = () => {
-        const pointItems = pointlist.querySelectorAll('.pointlist__point[data-id]');
+        const pointItems = pointList.querySelectorAll('.pointlist__point[data-id]');
         const coordinates = [...pointItems].map(item => state.coordinates[item.dataset.id]);
         map.geoObjects.remove(state.polyline);
         const newPolyline = new ymaps.Polyline(coordinates);
         state.polyline = newPolyline;
         map.geoObjects.add(newPolyline);
     };
+
     const addPoint =  () => {
         const text = addressLine.value;
         const number = state.listLength;
@@ -53,13 +55,15 @@ function createNewPoint (map) {
                     break;
             }
         };
+
         const pointItem = new Item({
-            pointlist: pointlist, 
+            pointlist: pointList, 
             itemClassName: 'pointlist__point',
             text: text,
             id: number, 
             eventFunction: itemEventListener
         });
+        pointItem.create();
         newPlacemark.events.add('dragend', () => {
             state.coordinates[number] = newPlacemark.geometry.getCoordinates();
             renderPolyline();
@@ -69,14 +73,16 @@ function createNewPoint (map) {
         });
         state.coordinates[number] = coordinate;
         map.geoObjects.add(newPlacemark);
-        pointItem.createItem(text, number);
         renderPolyline();
         addressLine.value = '';
         state.listLength++;
     };
+    
     addressLine.addEventListener('keydown', (event) => {
         if (event.keyCode == 13) {
             addPoint();
         }
     })
 }
+import '../css/reset.css';
+import '../css/main.css';
