@@ -2,7 +2,7 @@ html{
     font-size: 14px;
     font-family: sans-serif;
 }
-.container {
+#container {
     max-width: 800px;
     margin: 0 auto;
     padding: 1rem;
@@ -40,7 +40,7 @@ html{
     background: white;
     user-select: none;
 }
-.pointlist__point_layout {
+.pointlist__point_Layout {
     width: 90%;
     height: 2rem;
     margin: 0.5rem 0 0.5rem;
