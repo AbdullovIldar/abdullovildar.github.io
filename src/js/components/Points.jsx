@@ -140,7 +140,7 @@ class Points extends React.Component{
         window.addEventListener('mouseup', leaveOn);
     }
     changeItemsOrder = () => {
-        const {points, changePointList} = this.props;
+        const {points} = this.props;
         const items = this.moveRef.current.querySelectorAll('.pointlist__point');
         const newPoints = [...items].map(item => points[item.dataset.id].coordinate);
         this.renderPolyline(newPoints);
